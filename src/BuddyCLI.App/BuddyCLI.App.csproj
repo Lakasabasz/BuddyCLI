@@ -9,4 +9,8 @@
     <AssemblyName>bdycli</AssemblyName>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BuddyCLI.Core\BuddyCLI.Core.csproj" />
+  </ItemGroup>
+
 </Project>
