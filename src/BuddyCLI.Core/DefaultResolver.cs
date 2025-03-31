@@ -22,7 +22,7 @@ public class DefaultResolver: IResolver
         builder.Register<ArgumentParser>(_ => args).AsSelf();
         _container = builder.Build();
         
-        _handlers = _container.Resolve<List<ICommandHandler>>();
+        _handlers = _container.Resolve<IEnumerable<ICommandHandler>>().ToList();
         _logger.Debug(LogMessages.Others.LoadedCommands(_handlers.Count));
     }
 

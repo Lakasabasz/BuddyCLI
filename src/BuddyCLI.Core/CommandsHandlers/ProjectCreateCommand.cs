@@ -3,6 +3,11 @@ namespace BuddyCLI.Core.CommandsHandlers;
 public class ProjectCreateCommand: ICommandHandler
 {
 
+    public Resources Resource => Resources.Project;
+    public Operations Operation => Operations.Add;
+    
+    public string Description => "Create new project";
+
     public void Handle()
     {
         throw new NotImplementedException();
