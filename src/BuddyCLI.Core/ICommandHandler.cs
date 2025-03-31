@@ -2,7 +2,7 @@ namespace BuddyCLI.Core;
 
 public interface ICommandHandler
 {
-    void Handle(ArgumentParser args);
+    void Handle();
     
     bool CanHandle();
     
