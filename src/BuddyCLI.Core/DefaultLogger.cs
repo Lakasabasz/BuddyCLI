@@ -13,6 +13,8 @@ public class DefaultLogger: ILogger
     {
         var loggerArgs = new LoggerArgsFacade(args);
         LogEventLevel level = LogEventLevel.Information;
+        if(loggerArgs.Debug) level = LogEventLevel.Debug;
+        else if(loggerArgs.Verbose) level = LogEventLevel.Verbose;
         logger = new LoggerConfiguration()
             .MinimumLevel.Is(level)
             .WriteTo.Console()
@@ -25,15 +27,39 @@ public class DefaultLogger: ILogger
 
     public ILogger Verbose(string message) => throw new NotImplementedException();
 
-    public ILogger Debug(string message) => throw new NotImplementedException();
+    public ILogger Debug(string message)
+    {
+        logger.Debug(FormatMessage(message));
+        return this;
+    }
 
-    public ILogger Info(string message) => throw new NotImplementedException();
+    public ILogger Info(string message)
+    {
+        logger.Information(FormatMessage(message));
+        return this;
+    }
 
-    public ILogger Warning(string message) => throw new NotImplementedException();
+    public ILogger Warning(string message)
+    {
+        logger.Warning(FormatMessage(message));
+        return this;
+    }
 
-    public ILogger Error(string message) => throw new NotImplementedException();
+    public ILogger Error(string message)
+    {
+        logger.Error(FormatMessage(message));
+        return this;
+    }
 
-    public ILogger Fatal(string message, Exception ex) => throw new NotImplementedException();
+    public ILogger Fatal(string message, Exception ex)
+    {
+        logger.Fatal(FormatMessage(message), ex);
+        return this;
+    }
 
-    public ILogger WithException(Exception ex) => throw new NotImplementedException();
+    public ILogger WithException(Exception ex)
+    {
+        logger.Fatal(FormatMessage(ex.Message), ex);
+        return this;
+    }
 }
