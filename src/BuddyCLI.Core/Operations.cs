@@ -6,5 +6,6 @@ public enum Operations
     Update,
     Delete,
     List,
-    Get
+    Get,
+    [Alias("")] None
 }

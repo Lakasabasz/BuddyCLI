@@ -41,6 +41,17 @@ public static class EnumExtensions
         
         throw new ArgumentException($"No enum value found with alias '{alias}'", nameof(alias));
     }
+
+    public static T ParseValueIncludingAliases<T>(this string value) where T : Enum => 
+        (TryParseValueIncludingAliases(value, out T? result) ? result : throw new ArgumentException($"No enum value found with alias '{value}'", nameof(value)))!;
+    
+    public static bool TryParseValueIncludingAliases<T>(this string value, out T? parsed) where T : Enum
+    {
+        parsed = GetAllAliases<T>().FirstOrDefault(x => 
+            x.Value.Any(alias => string.Equals(alias, value, StringComparison.OrdinalIgnoreCase)) 
+            || string.Equals(x.Key.ToString(), value, StringComparison.OrdinalIgnoreCase)).Key;
+        return parsed is not null;
+    }
     
     // Metoda zwracająca słownik wszystkich wartości enum i ich aliasów
     public static Dictionary<T, List<string>> GetAllAliases<T>() where T : Enum

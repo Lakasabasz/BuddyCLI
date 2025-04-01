@@ -1,7 +1,11 @@
+using BuddyCLI.Core.ArgsFacades;
+
 namespace BuddyCLI.Core.CommandsHandlers;
 
-public class ProjectCreateCommand: ICommandHandler
+public class ProjectCreateCommand(ArgumentParser args) : ICommandHandler
 {
+
+    private readonly ProjectsCommandFacade _args = new ProjectsCommandFacade(args);
 
     public Resources Resource => Resources.Project;
     public Operations Operation => Operations.Add;
@@ -13,7 +17,7 @@ public class ProjectCreateCommand: ICommandHandler
         throw new NotImplementedException();
     }
 
-    public bool CanHandle() => throw new NotImplementedException();
+    public bool CanHandle() => _args is {IsProjectResource: true, Operation: Operations.Add};
 
     public bool Validate() => throw new NotImplementedException();
 

@@ -9,4 +9,5 @@ public enum Resources
     Action,
     [Alias("var")] Variable,
     [Alias("execution")][Alias("exec")] Run,
+    [Alias("?")] Help
 }
