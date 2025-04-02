@@ -18,18 +18,12 @@ public class HelpCommand : ICommandHandler
     public Resources Resource => Resources.Help;
     public Operations Operation => Operations.None;
     public string Description => "Show help";
-
-    private static string GetAliases(IEnumerable<string> aliases)
-    {
-        var list = aliases.ToList();
-        return list.Any(x => !string.IsNullOrEmpty(x)) ? $"(aliases: {string.Join(", ", list)})" : string.Empty;
-    }
     
     public void Handle()
     {
         var help = string.Join('\n', _commands.Value.OrderBy(x => x.Resource).ThenBy(x => x.Operation)
-            .Select(x => $"{x.Resource}{GetAliases(x.Resource.GetAliases())}" +
-                $"\t\t{x.Operation}{GetAliases(x.Operation != Operations.None ? [] : x.Operation.GetAliases())}" +
+            .Select(x => $"{x.Resource} {x.Resource.GetAliases().ToStringList()}" +
+                $"\t\t{x.Operation} {(x.Operation != Operations.None ? [] : x.Operation.GetAliases()).ToStringList()}" +
                 $"\t\t{x.Description}"));
         _logger.Info($"""
                       List of commands:
@@ -42,8 +36,6 @@ public class HelpCommand : ICommandHandler
     public bool CanHandle() => _args.IsHelpResource;
 
     public bool Validate() => true;
-
-    public void HandleValidationError() => throw new InvalidOperationException("Operation does not have validation");
 
     public override string ToString() => nameof(HelpCommand);
 }

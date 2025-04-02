@@ -12,6 +12,4 @@ public interface ICommandHandler
     bool CanHandle();
     
     bool Validate();
-
-    void HandleValidationError();
 }

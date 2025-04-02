@@ -7,5 +7,8 @@ public enum Operations
     Delete,
     List,
     Get,
-    [Alias("")] None
+    [Alias("")] None,
+    
+    // Exclusive for Login
+    Pat
 }

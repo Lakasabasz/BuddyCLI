@@ -65,4 +65,10 @@ public static class EnumExtensions
         
         return result;
     }
+    
+    public static string ToStringList(this IEnumerable<string> aliases)
+    {
+        var list = aliases.ToList();
+        return list.Any(x => !string.IsNullOrEmpty(x)) ? $"(aliases: {string.Join(", ", list)})" : string.Empty;
+    }
 }

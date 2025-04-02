@@ -20,9 +20,4 @@ public class ProjectCreateCommand(ArgumentParser args) : ICommandHandler
     public bool CanHandle() => _args is {IsProjectResource: true, Operation: Operations.Add};
 
     public bool Validate() => throw new NotImplementedException();
-
-    public void HandleValidationError()
-    {
-        throw new NotImplementedException();
-    }
 }

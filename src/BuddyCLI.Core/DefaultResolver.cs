@@ -32,13 +32,10 @@ public class DefaultResolver: IResolver
         if(handler is null)
         {
             _logger.Error(LogMessages.Others.CommandNotFound);
+            _handlers.First(x => x.Resource == Resources.Help).Handle();
             return ExitCode.CommandNotFound;
         }
-        if(!handler.Validate())
-        {
-            handler.HandleValidationError();
-            return ExitCode.InvalidCommand;
-        }
+        if(!handler.Validate()) return ExitCode.InvalidCommand;
         
         handler.Handle();
         
