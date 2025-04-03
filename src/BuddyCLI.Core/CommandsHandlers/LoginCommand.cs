@@ -1,5 +1,6 @@
 using Autofac.Core.Activators.Reflection;
 using BuddyCLI.Core.ArgsFacades;
+using BuddyCLI.Core.Displays;
 using BuddyCLI.Core.Messages;
 
 namespace BuddyCLI.Core.CommandsHandlers;
@@ -22,7 +23,7 @@ public class LoginCommand: ICommandHandler
 
     public Resources Resource => Resources.Login;
     public Operations Operation => Operations.Pat;
-    public string Description => "Command allow you to log in using personal access token";
+    public string Description => "Saves personal access token and api server url";
     public void Handle()
     {
         if(_args.HasHelpParam)

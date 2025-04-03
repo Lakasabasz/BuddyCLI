@@ -1,5 +1,6 @@
 using Autofac;
 using Autofac.Core;
+using BuddyCLI.Core.Displays;
 using BuddyCLI.Core.Messages;
 
 namespace BuddyCLI.Core;
@@ -11,7 +12,7 @@ public class DefaultResolver: IResolver
     private readonly List<ICommandHandler> _handlers;
     private readonly ILogger _logger;
 
-    public DefaultResolver(ArgumentParser args)
+    public DefaultResolver(ArgumentParser args, DisplayToolFactory displayFactory)
     {
         _logger = new DefaultLogger(args, this);
         _args = args;
@@ -20,6 +21,7 @@ public class DefaultResolver: IResolver
             .Where(x => x.GetInterface(nameof(ICommandHandler)) is not null).AsSelf()
             .AsImplementedInterfaces();
         builder.Register<ArgumentParser>(_ => args).AsSelf();
+        builder.Register<DisplayToolFactory>(_ => displayFactory).AsSelf();
         _container = builder.Build();
         
         _handlers = _container.Resolve<IEnumerable<ICommandHandler>>().ToList();
@@ -31,7 +33,8 @@ public class DefaultResolver: IResolver
         var handler = _handlers.FirstOrDefault(x => x.CanHandle());
         if(handler is null)
         {
-            _logger.Error(LogMessages.Others.CommandNotFound);
+            if(!(string.IsNullOrWhiteSpace(_args.Resource) && string.IsNullOrWhiteSpace(_args.Command)))
+                _logger.Error(LogMessages.Others.CommandNotFound);
             _handlers.First(x => x.Resource == Resources.Help).Handle();
             return ExitCode.CommandNotFound;
         }

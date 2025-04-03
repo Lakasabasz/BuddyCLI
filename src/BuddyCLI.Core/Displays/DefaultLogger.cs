@@ -2,7 +2,7 @@ using BuddyCLI.Core.ArgsFacades;
 using Serilog;
 using Serilog.Events;
 
-namespace BuddyCLI.Core;
+namespace BuddyCLI.Core.Displays;
 
 public class DefaultLogger: ILogger
 {
