@@ -1,4 +1,4 @@
-namespace BuddyCLI.Core;
+namespace BuddyCLI.Core.Displays;
 
 public interface ILogger
 {

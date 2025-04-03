@@ -1,4 +1,5 @@
 ﻿using BuddyCLI.Core;
+using BuddyCLI.Core.Displays;
 using BuddyCLI.Core.Exceptions;
 using BuddyCLI.Core.Messages;
 
@@ -9,10 +10,10 @@ class App
     private readonly ILogger logger;
     private readonly IResolver resolver;
     
-    public App(ArgumentParser args)
+    public App(ArgumentParser args, DisplayToolFactory? displayFactory = null)
     {
         logger = new DefaultLogger(args, typeof(App));
-        resolver = new DefaultResolver(args);
+        resolver = new DefaultResolver(args, displayFactory ?? new DisplayToolFactory());
     }
     
     private ExitCode Process()
