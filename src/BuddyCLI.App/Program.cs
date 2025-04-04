@@ -12,11 +12,12 @@ class App
     
     public App(ArgumentParser args, DisplayToolFactory? displayFactory = null)
     {
-        logger = new DefaultLogger(args, typeof(App));
-        resolver = new DefaultResolver(args, displayFactory ?? new DisplayToolFactory());
+        displayFactory ??= new DisplayToolFactory();
+        logger = displayFactory.CreateLogger(args, typeof(App));
+        resolver = new DefaultResolver(args, displayFactory);
     }
     
-    private ExitCode Process()
+    public ExitCode Process()
     {
         try
         {

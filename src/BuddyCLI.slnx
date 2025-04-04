@@ -2,4 +2,5 @@
   <Project Path="BuddyCLI.App\BuddyCLI.App.csproj" Type="Classic C#" />
   <Project Path="BuddyCLI.Client\BuddyCLI.Client.csproj" Type="Classic C#" />
   <Project Path="BuddyCLI.Core\BuddyCLI.Core.csproj" Type="Classic C#" />
+  <Project Path="BuddyCLI.Tests\BuddyCLI.Tests.csproj" Type="Classic C#" />
 </Solution>
