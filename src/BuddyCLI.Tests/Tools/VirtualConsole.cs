@@ -10,11 +10,11 @@ class VirtualConsole
     
     public void WriteLine(string message="")
     {
-        Messages.Add(new MessageData(message + Environment.NewLine, ForegroundColor));
+        Messages.Add(new MessageData(message + Environment.NewLine, string.IsNullOrWhiteSpace(message) ? ConsoleColor.White : ForegroundColor));
     }
         
     public void Write(string message)
     {
-        Messages.Add(new MessageData(message, ForegroundColor));
+        Messages.Add(new MessageData(message, string.IsNullOrWhiteSpace(message) ? ConsoleColor.White : ForegroundColor));
     }
 }

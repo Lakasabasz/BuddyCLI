@@ -37,8 +37,8 @@ class TestDisplayManager(VirtualConsole console): IDisplayManager
 
     public IDisplayManager Send()
     {
-        var current = Console.ForegroundColor;
-        Console.ForegroundColor = _color;
+        var current = console.ForegroundColor;
+        console.ForegroundColor = _color;
         var missing = _pad - _message.Length;
         if (missing < 0) missing = 0;
         string msg =  _padLeft 

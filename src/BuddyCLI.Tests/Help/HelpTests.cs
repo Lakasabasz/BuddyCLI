@@ -13,8 +13,10 @@ class HelpTests: TestTemplate
         Assert.Multiple(() =>
         {
             Assert.That(VirtualConsole.Messages, Is.EqualTo((List<MessageData>)[
-                        new MessageData("bdyctl 1.0.0.0v - Community command line interface client to buddy.works", ConsoleColor.White)
-                    ]), "Output message is invalid");
+                        Consts.Messages.Header, Consts.Padding.NewLine,
+                        Consts.Padding.NewLine,
+                        ..Consts.Messages.HelpUsage
+            ]), "Output message is invalid");
             Assert.That(exitCode, Is.EqualTo(ExitCode.CommandNotFound));
         });
     }
