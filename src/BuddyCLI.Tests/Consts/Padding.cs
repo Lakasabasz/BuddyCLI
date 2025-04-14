@@ -7,4 +7,5 @@ static class Padding
     public static MessageData NewLine => new MessageData(Environment.NewLine, ConsoleColor.White);
     
     public static MessageData Padding1 => new MessageData("    ", ConsoleColor.White);
+    public static MessageData Padding2 => new MessageData("        ", ConsoleColor.White);
 }
