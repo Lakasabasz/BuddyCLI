@@ -25,11 +25,11 @@ public class HelpCommand : ICommandHandler
     
     public void Handle()
     {
-        _displayManager.AddMessage($"bdyctl {Assembly.GetExecutingAssembly().GetName().Version}v - Community command line interface client to buddy.works")
+        _displayManager.AddMessage($"bdycli {Assembly.GetExecutingAssembly().GetName().Version}v - Community command line interface client to buddy.works")
             .Send().SendNewLine().SendNewLine();
         _displayManager.PadLeft(4).Send()
             .AddMessage("USAGE").Send().SendNewLine();
-        _displayManager.AddMessage("\tbdyctl ").SetColor(ConsoleColor.Gray).Send()
+        _displayManager.AddMessage("\tbdycli ").SetColor(ConsoleColor.Gray).Send()
             .AddMessage("<RESOURCE> ").SetColor(ConsoleColor.DarkYellow).Send()
             .AddMessage("<OPERATION> ").SetColor(ConsoleColor.DarkCyan).Send()
             .AddMessage("[PARAMS] [-h|--help] [ARGUMENTS]").Send().SendNewLine().SendNewLine();
@@ -62,7 +62,7 @@ public class HelpCommand : ICommandHandler
             .SendColorizedCommand(Resources.Help, Operations.None).SendNewLine();
         
         _displayManager.SendNewLine()
-            .AddMessage("For more information use bdyctl <resource> <command> --help or bdyctl <resource> <command> -h").Send().SendNewLine();
+            .AddMessage("For more information use bdycli <resource> <command> --help or bdycli <resource> <command> -h").Send().SendNewLine();
     }
 
     public bool CanHandle() => _args.IsHelpResource;

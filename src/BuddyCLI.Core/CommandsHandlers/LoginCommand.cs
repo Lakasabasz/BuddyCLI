@@ -12,7 +12,7 @@ public class LoginCommand: ICommandHandler
 
     private string _help => new CommandHelpBuilder(Resource, Operation, Description)
         .WithParam(LoginCommandArgsFacade.HostParam, "api.eu.buddy.works", "Api server url")
-        .WithExample("bdyctl login pat --host api.eu.buddy.works <personal token>", "This command logs in to api.eu.buddy.works realm using provided token")
+        .WithExample("bdycli login pat --host api.eu.buddy.works <personal token>", "This command logs in to api.eu.buddy.works realm using provided token")
         .Build();
 
     public LoginCommand(ArgumentParser args)
