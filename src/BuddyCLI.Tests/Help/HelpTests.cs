@@ -5,7 +5,7 @@ namespace BuddyCLI.Tests.Help;
 
 class HelpTests: TestTemplate
 {
-    [Test/*, Ignore("Not yet implemented")*/]
+    [Test, Ignore("Not yet implemented")]
     public void ImplicitHelp()
     {
         var app = new App.App(new ArgumentParser([]), new TestsDisplayFactory(VirtualConsole));
