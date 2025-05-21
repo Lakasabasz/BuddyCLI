@@ -1,6 +1,6 @@
 using BuddyCLI.Core.ArgsFacades;
 
-namespace BuddyCLI.Core.CommandsHandlers;
+namespace BuddyCLI.Core.CommandsHandlers.Project;
 
 public class ProjectCreateCommand(ArgumentParser args) : ICommandHandler
 {

@@ -12,7 +12,7 @@ public class RestException(string content, HttpStatusCode code) : Exception
     public HttpStatusCode Code { get; } = code;
 }
 
-public class ApiClient
+public partial class ApiClient
 {
     private readonly RestClient _client;
     
